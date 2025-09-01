@@ -49,7 +49,4 @@ Wszystko to, co procesor wypisze na standardowe wyjście w trakcie działania pr
 
 ## Kompilacja
 
-Wystarczy standardowy kompilator C++17 lub nowszy:
-
-```bash
-g++ -std=c++17 -O2 -o interpreter main.cpp
+Wystarczy standardowy kompilator C++17 lub nowszy
