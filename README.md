@@ -4,7 +4,7 @@
 An interpreter of a simple stack-based processor written in C++.
 The processor operates on a stack of character lists and supports its own instruction set.
 
-## Opis działania
+## Description of Operatio
 
 - The program reads the source code from **the first line of input**.  
 - **The second input line** contains characters that will be provided to the program’s standard input (the . instruction).  
