@@ -50,3 +50,41 @@ Everything that the processor prints to standard output during program execution
 ## Compilation
 
 A standard C++17 (or newer) compiler is sufficient.
+
+## Examples
+
+Example 1
+
+Input:
+
+'123'-456&+&
+
+
+Output:
+
+1: 321
+0: 654-
+0: 333-
+
+
+Explanation:
+The program creates lists on the stack, manipulates them using stack operations and arithmetic instructions, and prints the stack state using the & instruction.
+
+Example 2
+
+Input:
+
+'...&$&
+123
+
+
+Output:
+
+0: 321
+1: 21
+0: 3
+
+
+Explanation:
+Characters from the input stream are read using the . instruction and added to the list.
+The $ instruction separates the first character into a new list, and & prints the current contents of the stack.
