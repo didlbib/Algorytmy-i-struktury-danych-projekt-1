@@ -1,52 +1,52 @@
 # AiSD1
-# Interpreter stosowego procesora
+# Stack Processor Interpreter
 
-Interpreter prostego stosowego procesora napisanego w C++.  
-Procesor działa na stosie list znakowych i obsługuje własny zestaw instrukcji.
+An interpreter of a simple stack-based processor written in C++.
+The processor operates on a stack of character lists and supports its own instruction set.
 
 ## Opis działania
 
-- Program wczytuje kod źródłowy z **pierwszej linii wejścia**.  
-- **Druga linia wejścia** zawiera znaki, które będą podawane na standardowe wejście programu (instrukcja `.`).  
-- Interpreter wykonuje program krok po kroku, modyfikując stos i wypisując dane na standardowe wyjście zgodnie z instrukcjami.  
+- The program reads the source code from **the first line of input**.  
+- **The second input line** contains characters that will be provided to the program’s standard input (the . instruction).  
+- The interpreter executes the program step by step, modifying the stack and printing data to standard output according to the instructions.  
 
-### Format wejścia
-1. Pierwsza linia – program do wykonania (ciąg instrukcji bez spacji).  
-2. Druga linia – dane wejściowe (ciąg znaków, maks. 20000).  
+### Input Format
+1. First line – the program to execute (a sequence of instructions without spaces). 
+2. Second line – input data (a sequence of characters, max. 20,000).  
 
-### Format wyjścia
-Wszystko to, co procesor wypisze na standardowe wyjście w trakcie działania programu.
+### Output Format
+Everything that the processor prints to standard output during program execution.
 
 ---
 
-## Lista instrukcji
+## Instruction Set
 
-| Instrukcja | Nazwa            | Działanie |
+| Instruction | Name            | Description |
 |------------|------------------|-----------|
-| `'`        | apostrof         | włóż na stos pustą listę |
-| `,`        | przecinek        | zdejmij listę ze stosu |
-| `:`        | dwukropek        | włóż na stos kopię listy z wierzchołka stosu |
-| `;`        | średnik          | zamień miejscami dwie górne listy ze stosu |
-| `@`        | at               | zdejmij liczbę A i włóż kopię listy z A-tej pozycji stosu (0 = wierzchołek) |
-| `.`        | kropka           | wczytaj znak z wejścia i dołącz go na początek listy na wierzchołku stosu |
-| `>`        | większe niż      | wypisz pierwszy znak listy z wierzchołka stosu i zdejmij tę listę |
-| `!`        | wykrzyknik       | negacja logiczna – pustą listę lub `'0'` zamień na `'1'`, w pozostałych przypadkach zamień na `'0'` |
-| `<`        | mniejsze niż     | zdejmij A i B; jeśli B < A, włóż `1`, inaczej `0` |
-| `=`        | równe            | zdejmij A i B; jeśli B = A, włóż `1`, inaczej `0` |
-| `~`        | tylda            | włóż na stos numer bieżącej instrukcji |
-| `?`        | znak zapytania   | zdejmij T i W; jeśli W ≠ pusty/`0`, ustaw wskaźnik instrukcji na T |
-| `-`        | minus            | jeśli lista kończy się na `-`, usuń go; inaczej dodaj `-` na końcu |
-| `^`        | daszek           | usuń końcowy `-` z listy (wartość bezwzględna) |
-| `$`        | dolar            | odłącz pierwszy znak listy z wierzchołka stosu i włóż go jako nową listę |
-| `#`        | hasz             | zdejmij listę A i dołącz ją na końcu listy z wierzchołka stosu |
-| `+`        | plus             | zdejmij liczby A i B, włóż A+B |
-| `&`        | ampersand        | wypisz cały stos w formacie: `n: lista` … `0: lista` |
-| `]`        | nawias kwadratowy prawy | zdejmij liczbę A, włóż znak ASCII o kodzie A |
-| `[`        | nawias kwadratowy lewy | zdejmij listę A, włóż kod ASCII pierwszego znaku z listy |
-| pozostałe  | znaki            | każdy inny znak dołącz na początek listy z wierzchołka stosu |
+| `'`        | apostrophe       | push an empty list onto the stack |
+| `,`        | comma            | pop a list from the stack |
+| `:`        | colon            | push a copy of the list from the top of the stack |
+| `;`        | semicolon        | swap the two top lists on the stack |
+| `@`        | at               | pop a number A and push a copy of the list at position A on the stack (0 = top) |
+| `.`        | dot              | read a character from input and prepend it to the list on top of the stack |
+| `>`        | greater-than     | print the first character of the list on top of the stack and pop that list |
+| `!`        | exclamation mark | logical negation – replace an empty list or '0' with '1', otherwise replace with '0' |
+| `<`        | less-than        | pop A and B; if B < A, push `1`, otherwise `0` |
+| `=`        | equals           | pop A and B; if B = A, push `1`, otherwise `0` |
+| `~`        | tilde            | push the index of the current instruction onto the stack |
+| `?`        | question mark    | pop T and W; if W ≠ empty/0, set the instruction pointer to T |
+| `-`        | minus            | if the list ends with `-`, remove it; otherwise append `-` to the end|
+| `^`        | caret            | remove the trailing `-` from the list (absolute value) |
+| `$`        | dollar           | detach the first character of the list on top of the stack and push it as a new list |
+| `#`        | hash             | pop list A and append it to the end of the list on top of the stack |
+| `+`        | plus             | pop numbers A and B, push A + B |
+| `&`        | ampersand        | print the entire stack in the format: `n: list … 0: list` |
+| `]`        | right square bracket | pop number A, push the ASCII character with code A|
+| `[`        | left square bracket | pop list A, push the ASCII code of the first character of the list |
+| others     | other characters     | append the character to the beginning of the list on top of the stack |
 
 ---
 
-## Kompilacja
+## Compilation
 
-Wystarczy standardowy kompilator C++17 lub nowszy
+A standard C++17 (or newer) compiler is sufficient.
